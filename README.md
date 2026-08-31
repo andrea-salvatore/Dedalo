@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🎭 Escape into the City</h1>
+  <h1>🎭 Dedalo</h1>
   <p><i>L'evoluzione del genere "hidden movement", tra strategia pura e meraviglie d'Italia.</i></p>
 </div>
 
@@ -7,7 +7,9 @@
 
 Come grande amante del classico gioco da tavolo *Scotland Yard*, ho sempre sognato di espanderne le potenzialità slegandolo dai limiti fisici del cartone. Questo progetto nasce proprio da quella scintilla, ma va molto oltre: non è un semplice clone, è un'evoluzione totale del genere della caccia all'uomo.
 
-**Escape into the City** è un videogioco asimmetrico di strategia, deduzione e manipolazione ambientale, ambientato nelle più iconiche città italiane. Ma attenzione: qui non cambia solo lo sfondo grafico. **Ogni città è un gioco a sé stante.**
+Il nome **Dedalo** non è scelto a caso. In italiano, questa parola è sinonimo di "labirinto inestricabile" (dal mito di Dedalo e il Minotauro). I centri storici delle città italiane — con i canali stretti di Venezia, i Sassi sovrapposti di Matera o i vicoli nascosti di Roma — sono dei veri e propri dedali. In questo progetto, questi antichi labirinti di pietra diventano la tua scacchiera.
+
+**Dedalo** è un videogioco asimmetrico di strategia, deduzione e manipolazione ambientale, ambientato nelle più iconiche città italiane. Ma attenzione: qui non cambia solo lo sfondo grafico. **Ogni città è un gioco a sé stante.**
 
 Oltre ad avere una topologia unica (strade, canali, dislivelli), ogni scenario introduce **regole esclusive, meccaniche dedicate e una logica di gioco completamente differente**, studiata per incarnare l'anima del luogo:
 
@@ -25,7 +27,9 @@ Questo progetto è una vera e propria lettera d'amore alla nostra cultura. È pe
 
 As a huge fan of the classic board game *Scotland Yard*, I've always dreamed of pushing its boundaries and overcoming the limits of physical cardboard. This project was born from that exact spark, but it goes much further: it's not a simple clone, but a complete evolution of the hidden movement genre.
 
-**Escape into the City** is an asymmetric video game of strategy, deduction, and environmental manipulation, set across the most iconic Italian cities. But here's the twist: it's not just a change of scenery. **Every city is a completely different game.**
+The name **Dedalo** (the Italian word for *labyrinth* or *maze*, derived from the mythical architect Daedalus) is no coincidence. Italy's historical cities — from the narrow canals of Venice and the overlapping stone dwellings of Matera, to the hidden alleys of Rome — are literal labyrinths. In this project, these ancient stone mazes become your chessboard.
+
+**Dedalo** is an asymmetric video game of strategy, deduction, and environmental manipulation, set across the most iconic Italian cities. But here's the twist: it's not just a change of scenery. **Every city is a completely different game.**
 
 Beyond featuring a unique map topology (streets, canals, elevations), each scenario introduces **exclusive rules, custom mechanics, and entirely different game logic**, designed to embody the soul of the location:
 
