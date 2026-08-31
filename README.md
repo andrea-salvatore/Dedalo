@@ -7,7 +7,7 @@
 
 Come grande amante del classico gioco da tavolo *Scotland Yard*, ho sempre sognato di espanderne le potenzialità slegandolo dai limiti fisici del cartone. Questo progetto nasce proprio da quella scintilla, ma va molto oltre: non è un semplice clone, è un'evoluzione totale del genere della caccia all'uomo.
 
-**[Nome del Gioco]** è un videogioco asimmetrico di strategia, deduzione e manipolazione ambientale, ambientato nelle più iconiche città italiane. Ma attenzione: qui non cambia solo lo sfondo grafico. **Ogni città è un gioco a sé stante.**
+**Escape into the City** è un videogioco asimmetrico di strategia, deduzione e manipolazione ambientale, ambientato nelle più iconiche città italiane. Ma attenzione: qui non cambia solo lo sfondo grafico. **Ogni città è un gioco a sé stante.**
 
 Oltre ad avere una topologia unica (strade, canali, dislivelli), ogni scenario introduce **regole esclusive, meccaniche dedicate e una logica di gioco completamente differente**, studiata per incarnare l'anima del luogo:
 
@@ -25,7 +25,7 @@ Questo progetto è una vera e propria lettera d'amore alla nostra cultura. È pe
 
 As a huge fan of the classic board game *Scotland Yard*, I've always dreamed of pushing its boundaries and overcoming the limits of physical cardboard. This project was born from that exact spark, but it goes much further: it's not a simple clone, but a complete evolution of the hidden movement genre.
 
-**[Game Name]** is an asymmetric video game of strategy, deduction, and environmental manipulation, set across the most iconic Italian cities. But here's the twist: it's not just a change of scenery. **Every city is a completely different game.**
+**Escape into the City** is an asymmetric video game of strategy, deduction, and environmental manipulation, set across the most iconic Italian cities. But here's the twist: it's not just a change of scenery. **Every city is a completely different game.**
 
 Beyond featuring a unique map topology (streets, canals, elevations), each scenario introduces **exclusive rules, custom mechanics, and entirely different game logic**, designed to embody the soul of the location:
 
