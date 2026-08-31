@@ -1,6 +1,5 @@
-# Escape-into-the-City
 <div align="center">
-  <h1>🎭 [Inserisci qui il Nome del Gioco]</h1>
+  <h1>🎭 Escape into the City</h1>
   <p><i>L'evoluzione del genere "hidden movement", tra strategia pura e meraviglie d'Italia.</i></p>
 </div>
 
