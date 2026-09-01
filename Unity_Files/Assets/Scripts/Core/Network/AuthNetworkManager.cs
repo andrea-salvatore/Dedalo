@@ -105,23 +105,48 @@ namespace Dedalo.Core.Network
 
         private string TranslateAuthError(AuthenticationException e)
         {
-            switch (e.Reason)
+            if (e.ErrorCode == AuthenticationErrorCodes.UsernameExists)
             {
-                case AuthExceptionReason.UsernameExists:
-                    return "Questo username/email è già registrato. Prova ad accedere.";
-                case AuthExceptionReason.UsernameNotFound:
-                    return "Nessun account trovato con questo username/email. Prima registrati.";
-                case AuthExceptionReason.InvalidPassword:
-                    return "Password errata. Riprova.";
-                case AuthExceptionReason.PasswordTooShort:
-                    return "La password è troppo corta: minimo 8 caratteri.";
-                case AuthExceptionReason.WeakPassword:
-                    return "La password non rispetta i requisiti: almeno 8 caratteri, una maiuscola, una minuscola, un numero e un carattere speciale.";
-                case AuthExceptionReason.ClientInvalidParameters:
-                    return "Dati inseriti non validi. Controlla email e password.";
-                default:
-                    return e.Message;
+                return "Questo username/email è già registrato. Prova ad accedere.";
             }
+            if (e.ErrorCode == AuthenticationErrorCodes.UsernameNotFound)
+            {
+                return "Nessun account trovato con questo username/email. Prima registrati.";
+            }
+            if (e.ErrorCode == AuthenticationErrorCodes.InvalidPassword)
+            {
+                return "Password errata. Riprova.";
+            }
+            if (e.ErrorCode == AuthenticationErrorCodes.PasswordTooShort)
+            {
+                return "La password è troppo corta: minimo 8 caratteri.";
+            }
+            if (e.ErrorCode == AuthenticationErrorCodes.PasswordTooLong)
+            {
+                return "La password è troppo lunga: massimo 64 caratteri.";
+            }
+            if (e.ErrorCode == AuthenticationErrorCodes.WeakPassword)
+            {
+                return "La password non rispetta i requisiti: almeno 8 caratteri, una maiuscola, una minuscola, un numero e un carattere speciale.";
+            }
+            if (e.ErrorCode == AuthenticationErrorCodes.InvalidUsername)
+            {
+                return "Lo username/email non è valido.";
+            }
+            if (e.ErrorCode == AuthenticationErrorCodes.ClientInvalidParameters ||
+                e.ErrorCode == AuthenticationErrorCodes.InvalidParameters)
+            {
+                return "Dati inseriti non validi. Controlla email e password.";
+            }
+            if (e.ErrorCode == AuthenticationErrorCodes.ClientNoConnection)
+            {
+                return "Nessuna connessione a internet. Controlla la rete e riprova.";
+            }
+            if (e.ErrorCode == AuthenticationErrorCodes.TooManyRequests)
+            {
+                return "Troppi tentativi in poco tempo. Attendi qualche minuto e riprova.";
+            }
+            return e.Message;
         }
 
         private string TranslateRequestError(RequestFailedException e)
