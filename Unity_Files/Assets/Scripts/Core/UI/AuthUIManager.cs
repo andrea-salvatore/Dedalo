@@ -40,15 +40,18 @@ namespace Dedalo.Core.UI
                 return;
             }
 
-            string email = emailInput.text;
-            string password = passwordInput.text;
+            Debug.Log("[UI] Chiamo il NetworkManager e ATTENDO la risposta...");
+            bool success = await authNetworkManager.SignInWithUsernamePasswordAsync(emailInput.text, passwordInput.text);
+            Debug.Log($"[UI] Risposta ricevuta dal NetworkManager. Il valore di success è: {success}");
 
-            bool success = await authNetworkManager.SignInWithUsernamePasswordAsync(email, password);
-
-            if (success)
+            if (success == true)
             {
-                Debug.Log("Login riuscito: carico MainMenuScene.");
+                Debug.Log("[UI] Teletrasporto autorizzato! Carico il Menu.");
                 UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenuScene");
+            }
+            else
+            {
+                Debug.Log("[UI] Login fallito. Blocco il teletrasporto.");
             }
         }
 
@@ -66,15 +69,18 @@ namespace Dedalo.Core.UI
                 return;
             }
 
-            string email = emailInput.text;
-            string password = passwordInput.text;
+            Debug.Log("[UI] Chiamo il NetworkManager e ATTENDO la risposta...");
+            bool success = await authNetworkManager.SignUpWithUsernamePasswordAsync(emailInput.text, passwordInput.text);
+            Debug.Log($"[UI] Risposta ricevuta dal NetworkManager. Il valore di success è: {success}");
 
-            bool success = await authNetworkManager.SignUpWithUsernamePasswordAsync(email, password);
-
-            if (success)
+            if (success == true)
             {
-                Debug.Log("Registrazione riuscita: carico MainMenuScene.");
+                Debug.Log("[UI] Teletrasporto autorizzato! Carico il Menu.");
                 UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenuScene");
+            }
+            else
+            {
+                Debug.Log("[UI] Registrazione fallita. Blocco il teletrasporto.");
             }
         }
 
@@ -87,12 +93,18 @@ namespace Dedalo.Core.UI
                 return;
             }
 
+            Debug.Log("[UI] Chiamo il NetworkManager e ATTENDO la risposta...");
             bool success = await authNetworkManager.SignInAnonymouslyAsync();
+            Debug.Log($"[UI] Risposta ricevuta dal NetworkManager. Il valore di success è: {success}");
 
-            if (success)
+            if (success == true)
             {
-                Debug.Log("Accesso Ospite riuscito: carico MainMenuScene.");
+                Debug.Log("[UI] Teletrasporto autorizzato! Carico il Menu.");
                 UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenuScene");
+            }
+            else
+            {
+                Debug.Log("[UI] Accesso Ospite fallito. Blocco il teletrasporto.");
             }
         }
     }
