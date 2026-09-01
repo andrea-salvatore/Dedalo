@@ -1,0 +1,62 @@
+# Game Design Document - Modulo: Venezia 1755: La Congiura
+
+## 1. Ambientazione e Concept
+
+L'azione si svolge durante il Carnevale di Venezia del 1755. Il gioco è un asimmetrico in cui un giocatore (o l'IA) interpreta l'**Ombra**, un cospiratore che si muove in segreto per la città. Gli altri giocatori (o l'IA) interpretano gli **Inquisitori di Stato**, una task force che collabora per braccare l'Ombra. L'intera logica di gioco si basa su deduzione predittiva, bluff, e manipolazione del tabellone.
+
+## 2. Condizioni di Vittoria
+
+* **Per l'Ombra:** Raggiungere 3 nodi specifici (estratti casualmente a inizio partita e tenuti segreti) per compiere 3 sabotaggi prima dell'alba (entro un limite di 24 turni). Questo fornisce agli Inquisitori un "movente" per intuire la direzione della fuga.
+* **Per gli Inquisitori:** Intercettare l'Ombra (terminare il movimento sullo stesso nodo in cui si trova l'Ombra) prima che l'ultimo sabotaggio venga portato a termine o prima dello scadere del tempo.
+
+## 3. La Topologia della Mappa (Il Grafo)
+
+La plancia è una rappresentazione di Venezia. I nodi (campi, piazze, palazzi, moli) sono collegati da tre tipologie di percorsi:
+
+* **Calli (A piedi):** La rete principale e più fitta. Spostamenti standard strada per strada.
+* **Canali (In Gondola):** Percorsi rapidissimi che permettono di tagliare intere sezioni della mappa, ma i moli di attracco sono pochi e strategicamente vulnerabili alle imboscate.
+* **Tetti (Acrobazia):** Percorsi speciali che permettono all'Ombra di scavalcare i canali senza passare per i ponti. Richiedono l'uso di "Stamina".
+
+## 4. Meccaniche Core
+
+* **Fog of War Asimmetrica:** L'Ombra gode di onniscienza visiva, potendo vedere la posizione esatta di tutti gli Inquisitori in tempo reale. Gli Inquisitori vedono solo le porzioni di mappa illuminate dal loro raggio visivo e dai loro posti di blocco. L'Ombra sul server è invisibile.
+* **Tracce Termiche (Invecchiamento Indizi):** Ogni volta che l'Ombra abbandona un nodo, il motore di gioco registra un "Segno" (una porta forzata, un testimone). Se un Inquisitore transita su quel nodo, il sistema gli rivela con precisione matematica quanti turni prima l'Ombra si trovava lì, permettendo di ricostruire a ritroso il percorso.
+* **Le Maschere (Il Bluff):** L'Ombra possiede 3 gettoni "Maschera" per l'intera partita. Attivandone uno, il sistema di notifica mente agli Inquisitori sul mezzo di trasporto utilizzato in quel turno (es. annuncia "Ha preso una Gondola" quando in realtà si è mossa sui tetti).
+* **Manipolazione della Mappa:** Nel proprio turno, un Inquisitore può rinunciare al movimento per piazzare un "Posto di Blocco" sui ponti o corrompere i gondolieri per interdire temporaneamente l'accesso a un canale. Questa meccanica costringe l'Ombra a ricalcolare le sue vie di fuga.
+
+## 5. Meccaniche Esclusive del Modulo Venezia
+
+Venezia non è un semplice sfondo, ma un'entità dinamica che altera attivamente il gameplay attraverso quattro regole esclusive:
+
+### A. L'Acqua Alta (Mappa Dinamica)
+
+Ogni 5 turni esatti il livello del mare si alza e si verifica l'Acqua Alta.
+
+* I nodi con l'altitudine più bassa (es. Piazza San Marco e zone limitrofe) si allagano temporaneamente.
+* **Effetto sul grafo:** I collegamenti "Calli" in quelle aree vengono disattivati, mentre si attivano nuovi collegamenti "Canali".
+* **Uso tattico:** L'Ombra può temporeggiare per usare l'Acqua Alta a suo vantaggio, isolando gli Inquisitori su "isole pedonali" mentre lei fugge su percorsi navigabili appena generati.
+
+### B. Le Folle del Carnevale (Sistema Stealth)
+
+I "Campi" più vasti della mappa sono contrassegnati come Zone Affollate.
+
+* **Per l'Ombra:** Transitare o sostare in una Zona Affollata azzera istantaneamente le sue "Tracce Termiche". La folla in maschera distrugge la pista degli Inquisitori.
+* **Per gli Inquisitori:** Attraversare una piazza affollata costa 2 Punti Movimento invece di 1. Per passare normalmente (1 PM), l'Inquisitore deve spendere un'azione per ordinare lo sgombero dell'area, perdendo però altre opportunità tattiche.
+
+### C. Le Bocche dei Leoni (Sistema di Informazioni)
+
+Sulla mappa sono dislocate 6 Bocche dei Leoni fisse (es. Palazzo Ducale, Torcello).
+
+* Se l'Ombra termina il movimento in un nodo adiacente a una Bocca del Leone, il motore calcola un 30% di probabilità che avvenga una spiata cittadina.
+* Se la spiata ha successo, all'inizio del turno successivo il sistema notifica gli Inquisitori con un avviso di zona: *"Avvistamento sospetto nel Sestiere di Cannaregio"*. Non svela il nodo esatto, ma annulla la necessità di muoversi alla cieca.
+
+### D. La Verticalità e i Tetti
+
+L'uso dei Tetti è vitale per l'Ombra per aggirare i posti di blocco degli Inquisitori, specialmente per scavalcare i canali minori.
+
+* **Gestione Risorse:** Ogni movimento sui tetti consuma Stamina.
+* **Penalità:** Se la Stamina raggiunge lo zero durante un'acrobazia, l'Ombra commette un errore rumoroso. Un indicatore visivo (una tegola caduta) compare istantaneamente sulla mappa degli Inquisitori, rivelando l'esatto nodo occupato dall'Ombra in quel turno, bruciando completamente la sua invisibilità temporanea.
+
+### E. I Sestieri come Trappole
+
+La mappa è tagliata a metà dal Canal Grande. Questo corso d'acqua principale è attraversabile a piedi solo tramite 4 colli di bottiglia (i ponti di Rialto, Accademia, Scalzi, Costituzione). Il meta-gioco degli Inquisitori consiste nel localizzare in quale dei 6 Sestieri si trovi l'Ombra, correre a bloccare questi ponti centrali con i Posti di Blocco, e trasformare l'intero quartiere in una zona di rastrellamento senza via d'uscita.
