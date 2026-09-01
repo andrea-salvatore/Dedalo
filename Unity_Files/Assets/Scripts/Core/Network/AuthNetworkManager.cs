@@ -9,7 +9,18 @@ namespace Dedalo.Core.Network
     {
         public async Task SignInAnonymouslyAsync()
         {
-            if (IsAlreadySignedIn() || !await EnsureInitializedAsync())
+            if (Unity.Services.Core.UnityServices.State == Unity.Services.Core.ServicesInitializationState.Uninitialized)
+            {
+                await Unity.Services.Core.UnityServices.InitializeAsync();
+            }
+
+            if (Unity.Services.Core.UnityServices.State != Unity.Services.Core.ServicesInitializationState.Initialized)
+            {
+                Debug.LogError("UGS non inizializzato: login anonimo annullato.");
+                return;
+            }
+
+            if (IsAlreadySignedIn())
             {
                 return;
             }
@@ -31,7 +42,18 @@ namespace Dedalo.Core.Network
 
         public async Task SignUpWithUsernamePasswordAsync(string username, string password)
         {
-            if (IsAlreadySignedIn() || !await EnsureInitializedAsync())
+            if (Unity.Services.Core.UnityServices.State == Unity.Services.Core.ServicesInitializationState.Uninitialized)
+            {
+                await Unity.Services.Core.UnityServices.InitializeAsync();
+            }
+
+            if (Unity.Services.Core.UnityServices.State != Unity.Services.Core.ServicesInitializationState.Initialized)
+            {
+                Debug.LogError("UGS non inizializzato: registrazione annullata.");
+                return;
+            }
+
+            if (IsAlreadySignedIn())
             {
                 return;
             }
@@ -53,7 +75,18 @@ namespace Dedalo.Core.Network
 
         public async Task SignInWithUsernamePasswordAsync(string username, string password)
         {
-            if (IsAlreadySignedIn() || !await EnsureInitializedAsync())
+            if (Unity.Services.Core.UnityServices.State == Unity.Services.Core.ServicesInitializationState.Uninitialized)
+            {
+                await Unity.Services.Core.UnityServices.InitializeAsync();
+            }
+
+            if (Unity.Services.Core.UnityServices.State != Unity.Services.Core.ServicesInitializationState.Initialized)
+            {
+                Debug.LogError("UGS non inizializzato: login annullato.");
+                return;
+            }
+
+            if (IsAlreadySignedIn())
             {
                 return;
             }
@@ -81,26 +114,6 @@ namespace Dedalo.Core.Network
                 return true;
             }
             return false;
-        }
-
-        private async Task<bool> EnsureInitializedAsync()
-        {
-            if (UnityServices.State == ServicesInitializationState.Initialized)
-            {
-                return true;
-            }
-
-            try
-            {
-                await UnityServices.InitializeAsync();
-                Debug.Log("Unity Gaming Services inizializzati correttamente.");
-                return true;
-            }
-            catch (ServicesInitializationException e)
-            {
-                Debug.LogError("Errore di inizializzazione UGS: " + e.Message);
-                return false;
-            }
         }
 
         private string TranslateAuthError(AuthenticationException e)
