@@ -9,14 +9,8 @@ namespace Dedalo.Core.Network
     {
         public async Task SignInAnonymouslyAsync()
         {
-            if (UnityServices.State != ServicesInitializationState.Initialized)
+            if (IsAlreadySignedIn() || !await EnsureInitializedAsync())
             {
-                await InitializeAsync();
-            }
-
-            if (UnityServices.State != ServicesInitializationState.Initialized)
-            {
-                Debug.LogError("UGS non inizializzato: login anonimo annullato.");
                 return;
             }
 
@@ -35,17 +29,112 @@ namespace Dedalo.Core.Network
             }
         }
 
-        private async Task InitializeAsync()
+        public async Task SignUpWithUsernamePasswordAsync(string username, string password)
         {
+            if (IsAlreadySignedIn() || !await EnsureInitializedAsync())
+            {
+                return;
+            }
+
+            try
+            {
+                await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(username, password);
+                Debug.Log("Registrazione completata con successo! PlayerId: " + AuthenticationService.Instance.PlayerId);
+            }
+            catch (AuthenticationException e)
+            {
+                Debug.LogError("Errore di registrazione: " + TranslateAuthError(e));
+            }
+            catch (RequestFailedException e)
+            {
+                Debug.LogError("Errore di registrazione: " + TranslateRequestError(e));
+            }
+        }
+
+        public async Task SignInWithUsernamePasswordAsync(string username, string password)
+        {
+            if (IsAlreadySignedIn() || !await EnsureInitializedAsync())
+            {
+                return;
+            }
+
+            try
+            {
+                await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(username, password);
+                Debug.Log("Login riuscito! Bentornato " + AuthenticationService.Instance.PlayerName + " (PlayerId: " + AuthenticationService.Instance.PlayerId + ")");
+            }
+            catch (AuthenticationException e)
+            {
+                Debug.LogError("Errore di login: " + TranslateAuthError(e));
+            }
+            catch (RequestFailedException e)
+            {
+                Debug.LogError("Errore di login: " + TranslateRequestError(e));
+            }
+        }
+
+        private bool IsAlreadySignedIn()
+        {
+            if (AuthenticationService.Instance.IsSignedIn)
+            {
+                Debug.Log("Sei già loggato!");
+                return true;
+            }
+            return false;
+        }
+
+        private async Task<bool> EnsureInitializedAsync()
+        {
+            if (UnityServices.State == ServicesInitializationState.Initialized)
+            {
+                return true;
+            }
+
             try
             {
                 await UnityServices.InitializeAsync();
                 Debug.Log("Unity Gaming Services inizializzati correttamente.");
+                return true;
             }
             catch (ServicesInitializationException e)
             {
                 Debug.LogError("Errore di inizializzazione UGS: " + e.Message);
+                return false;
             }
+        }
+
+        private string TranslateAuthError(AuthenticationException e)
+        {
+            switch (e.Reason)
+            {
+                case AuthExceptionReason.UsernameExists:
+                    return "Questo username/email è già registrato. Prova ad accedere.";
+                case AuthExceptionReason.UsernameNotFound:
+                    return "Nessun account trovato con questo username/email. Prima registrati.";
+                case AuthExceptionReason.InvalidPassword:
+                    return "Password errata. Riprova.";
+                case AuthExceptionReason.PasswordTooShort:
+                    return "La password è troppo corta: minimo 8 caratteri.";
+                case AuthExceptionReason.WeakPassword:
+                    return "La password non rispetta i requisiti: almeno 8 caratteri, una maiuscola, una minuscola, un numero e un carattere speciale.";
+                case AuthExceptionReason.ClientInvalidParameters:
+                    return "Dati inseriti non validi. Controlla email e password.";
+                default:
+                    return e.Message;
+            }
+        }
+
+        private string TranslateRequestError(RequestFailedException e)
+        {
+            if (e.Message.ToLowerInvariant().Contains("password"))
+            {
+                return "La password non rispetta i requisiti: almeno 8 caratteri, una maiuscola, una minuscola, un numero e un carattere speciale.";
+            }
+            if (e.Message.ToLowerInvariant().Contains("username"))
+            {
+                return "Lo username/email non è valido o è già in uso.";
+            }
+            return e.Message;
         }
     }
 }

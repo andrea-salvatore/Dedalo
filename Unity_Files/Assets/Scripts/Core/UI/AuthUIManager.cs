@@ -26,14 +26,36 @@ namespace Dedalo.Core.UI
             guestButton.onClick.AddListener(OnGuestClicked);
         }
 
-        public void OnLoginClicked()
+        public async void OnLoginClicked()
         {
             Debug.Log("Tentativo di login per: " + emailInput.text);
+            if (authNetworkManager == null)
+            {
+                Debug.LogError("AuthNetworkManager non collegato nell'Inspector!");
+                return;
+            }
+            if (string.IsNullOrEmpty(emailInput.text) || string.IsNullOrEmpty(passwordInput.text))
+            {
+                Debug.LogWarning("Compila sia il campo Email sia il campo Password.");
+                return;
+            }
+            await authNetworkManager.SignInWithUsernamePasswordAsync(emailInput.text, passwordInput.text);
         }
 
-        public void OnRegisterClicked()
+        public async void OnRegisterClicked()
         {
             Debug.Log("Tentativo di registrazione per: " + emailInput.text);
+            if (authNetworkManager == null)
+            {
+                Debug.LogError("AuthNetworkManager non collegato nell'Inspector!");
+                return;
+            }
+            if (string.IsNullOrEmpty(emailInput.text) || string.IsNullOrEmpty(passwordInput.text))
+            {
+                Debug.LogWarning("Compila sia il campo Email sia il campo Password.");
+                return;
+            }
+            await authNetworkManager.SignUpWithUsernamePasswordAsync(emailInput.text, passwordInput.text);
         }
 
         public async void OnGuestClicked()
