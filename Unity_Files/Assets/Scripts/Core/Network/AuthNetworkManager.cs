@@ -105,46 +105,18 @@ namespace Dedalo.Core.Network
 
         private string TranslateAuthError(AuthenticationException e)
         {
-            if (e.ErrorCode == AuthenticationErrorCodes.UsernameExists)
+            string message = e.Message.ToLowerInvariant();
+            if (message.Contains("already exists") || message.Contains("username exists"))
             {
                 return "Questo username/email è già registrato. Prova ad accedere.";
             }
-            if (e.ErrorCode == AuthenticationErrorCodes.UsernameNotFound)
+            if (message.Contains("not found"))
             {
                 return "Nessun account trovato con questo username/email. Prima registrati.";
             }
-            if (e.ErrorCode == AuthenticationErrorCodes.InvalidPassword)
+            if (message.Contains("password"))
             {
-                return "Password errata. Riprova.";
-            }
-            if (e.ErrorCode == AuthenticationErrorCodes.PasswordTooShort)
-            {
-                return "La password è troppo corta: minimo 8 caratteri.";
-            }
-            if (e.ErrorCode == AuthenticationErrorCodes.PasswordTooLong)
-            {
-                return "La password è troppo lunga: massimo 64 caratteri.";
-            }
-            if (e.ErrorCode == AuthenticationErrorCodes.WeakPassword)
-            {
-                return "La password non rispetta i requisiti: almeno 8 caratteri, una maiuscola, una minuscola, un numero e un carattere speciale.";
-            }
-            if (e.ErrorCode == AuthenticationErrorCodes.InvalidUsername)
-            {
-                return "Lo username/email non è valido.";
-            }
-            if (e.ErrorCode == AuthenticationErrorCodes.ClientInvalidParameters ||
-                e.ErrorCode == AuthenticationErrorCodes.InvalidParameters)
-            {
-                return "Dati inseriti non validi. Controlla email e password.";
-            }
-            if (e.ErrorCode == AuthenticationErrorCodes.ClientNoConnection)
-            {
-                return "Nessuna connessione a internet. Controlla la rete e riprova.";
-            }
-            if (e.ErrorCode == AuthenticationErrorCodes.TooManyRequests)
-            {
-                return "Troppi tentativi in poco tempo. Attendi qualche minuto e riprova.";
+                return "Password errata o non valida. Ricorda: almeno 8 caratteri, una maiuscola, una minuscola, un numero e un carattere speciale.";
             }
             return e.Message;
         }
