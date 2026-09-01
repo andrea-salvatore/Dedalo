@@ -46,9 +46,18 @@ namespace Dedalo.Core.UI
             SetButtonsInteractable(false);
             ShowStatus("Accesso in corso...", false);
 
-            Debug.Log("[UI] Chiamo il NetworkManager e ATTENDO la risposta...");
-            bool success = await authNetworkManager.SignInWithUsernamePasswordAsync(emailInput.text, passwordInput.text);
-            Debug.Log($"[UI] Risposta ricevuta dal NetworkManager. Il valore di success è: {success}");
+            bool success;
+            try
+            {
+                Debug.Log("[UI] Chiamo il NetworkManager e ATTENDO la risposta...");
+                success = await authNetworkManager.SignInWithUsernamePasswordAsync(emailInput.text, passwordInput.text);
+                Debug.Log($"[UI] Risposta ricevuta dal NetworkManager. Il valore di success è: {success}");
+            }
+            finally
+            {
+                SetButtonsInteractable(true);
+                Debug.Log("[UI] Stato UI ripristinato.");
+            }
 
             if (success == true)
             {
@@ -57,7 +66,6 @@ namespace Dedalo.Core.UI
             }
             else
             {
-                SetButtonsInteractable(true);
                 ShowStatus("Login fallito. Controlla i dati e riprova.", true);
                 Debug.Log("[UI] Login fallito. Blocco il teletrasporto.");
             }
@@ -80,9 +88,18 @@ namespace Dedalo.Core.UI
             SetButtonsInteractable(false);
             ShowStatus("Registrazione in corso...", false);
 
-            Debug.Log("[UI] Chiamo il NetworkManager e ATTENDO la risposta...");
-            bool success = await authNetworkManager.SignUpWithUsernamePasswordAsync(emailInput.text, passwordInput.text);
-            Debug.Log($"[UI] Risposta ricevuta dal NetworkManager. Il valore di success è: {success}");
+            bool success;
+            try
+            {
+                Debug.Log("[UI] Chiamo il NetworkManager e ATTENDO la risposta...");
+                success = await authNetworkManager.SignUpWithUsernamePasswordAsync(emailInput.text, passwordInput.text);
+                Debug.Log($"[UI] Risposta ricevuta dal NetworkManager. Il valore di success è: {success}");
+            }
+            finally
+            {
+                SetButtonsInteractable(true);
+                Debug.Log("[UI] Stato UI ripristinato.");
+            }
 
             if (success == true)
             {
@@ -91,7 +108,6 @@ namespace Dedalo.Core.UI
             }
             else
             {
-                SetButtonsInteractable(true);
                 ShowStatus("Registrazione fallita. Controlla i dati e riprova.", true);
                 Debug.Log("[UI] Registrazione fallita. Blocco il teletrasporto.");
             }
@@ -109,9 +125,18 @@ namespace Dedalo.Core.UI
             SetButtonsInteractable(false);
             ShowStatus("Accesso Ospite in corso...", false);
 
-            Debug.Log("[UI] Chiamo il NetworkManager e ATTENDO la risposta...");
-            bool success = await authNetworkManager.SignInAnonymouslyAsync();
-            Debug.Log($"[UI] Risposta ricevuta dal NetworkManager. Il valore di success è: {success}");
+            bool success;
+            try
+            {
+                Debug.Log("[UI] Chiamo il NetworkManager e ATTENDO la risposta...");
+                success = await authNetworkManager.SignInAnonymouslyAsync();
+                Debug.Log($"[UI] Risposta ricevuta dal NetworkManager. Il valore di success è: {success}");
+            }
+            finally
+            {
+                SetButtonsInteractable(true);
+                Debug.Log("[UI] Stato UI ripristinato.");
+            }
 
             if (success == true)
             {
@@ -120,7 +145,6 @@ namespace Dedalo.Core.UI
             }
             else
             {
-                SetButtonsInteractable(true);
                 ShowStatus("Accesso Ospite fallito. Riprova.", true);
                 Debug.Log("[UI] Accesso Ospite fallito. Blocco il teletrasporto.");
             }
