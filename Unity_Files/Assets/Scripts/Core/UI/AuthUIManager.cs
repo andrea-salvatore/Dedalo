@@ -1,3 +1,4 @@
+using Dedalo.Core.Network;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,9 @@ namespace Dedalo.Core.UI
         [SerializeField] private Button loginButton;
         [SerializeField] private Button registerButton;
         [SerializeField] private Button guestButton;
+
+        [Header("Network")]
+        [SerializeField] private AuthNetworkManager authNetworkManager;
 
         private void Start()
         {
@@ -32,9 +36,15 @@ namespace Dedalo.Core.UI
             Debug.Log("Tentativo di registrazione per: " + emailInput.text);
         }
 
-        public void OnGuestClicked()
+        public async void OnGuestClicked()
         {
             Debug.Log("Tentativo di accesso come Ospite (Guest).");
+            if (authNetworkManager == null)
+            {
+                Debug.LogError("AuthNetworkManager non collegato nell'Inspector!");
+                return;
+            }
+            await authNetworkManager.SignInAnonymouslyAsync();
         }
     }
 }
