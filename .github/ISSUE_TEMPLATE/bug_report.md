@@ -1,37 +1,37 @@
 ---
 name: Bug Report
-about: Segnala un bug o un comportamento inatteso
+about: Report a bug or unexpected behavior
 title: "[BUG] "
 labels: bug
 assignees: ""
 ---
 
-## Ambiente
+## Environment
 
-- **Versione Unity:** (es. 6000.0.32f1)
-- **Sistema Operativo:** (es. Windows 11, macOS 15, Ubuntu 24.04)
-- **Modulo interessato:** Core / Venezia / Matera / altro
+- **Unity version:** (e.g. 6000.0.32f1)
+- **Operating System:** (e.g. Windows 11, macOS 15, Ubuntu 24.04)
+- **Affected module:** Core / Venezia / Matera / other
 
-## Passaggi per riprodurre
+## Steps to reproduce
 
-1. Vai a...
-2. Clicca su...
-3. Osserva...
+1. Go to...
+2. Click on...
+3. Observe...
 
-## Comportamento atteso
+## Expected behavior
 
-Descrivi cosa sarebbe dovuto succedere.
+Describe what should have happened.
 
-## Comportamento attuale
+## Actual behavior
 
-Descrivi cosa succede invece.
+Describe what happens instead.
 
-## Screenshot / Log
+## Screenshots / Logs
 
-<!-- Incolla qui gli errori della console di Unity o uno screenshot. -->
+<!-- Paste Unity Console errors or a screenshot below. -->
 
 ```text
-(incolla qui i log di Unity)
+(paste Unity logs here)
 ```
 
-**Attenzione:** oscura qualsiasi dato sensibile (API key, token, percorsi privati) prima di pubblicare i log.
+**Warning:** redact any sensitive data (API keys, tokens, private paths) before publishing logs.

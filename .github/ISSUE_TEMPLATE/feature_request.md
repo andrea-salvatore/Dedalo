@@ -1,22 +1,22 @@
 ---
 name: Feature Request
-about: Proponi una nuova funzionalità o una nuova meccanica di gioco
+about: Propose a new feature or game mechanic
 title: "[FEAT] "
 labels: enhancement
 assignees: ""
 ---
 
-## Contesto (Modulo)
+## Context (Module)
 
-A quale parte del progetto si applica questa idea?
+Which part of the project does this idea apply to?
 
-- [ ] Core (motore, UI generale, IA, pathfinding)
-- [ ] Città specifica (indica quale): ...
+- [ ] Core (engine, general UI, AI, pathfinding)
+- [ ] Specific city (name it): ...
 
-## Il problema da risolvere
+## The problem to solve
 
-Perché serve questa funzionalità? Descrivi la necessità o la lacuna attuale.
+Why is this feature needed? Describe the need or the current gap.
 
-## La soluzione proposta
+## Proposed solution
 
-Descrivi come la implementeresti tecnicamente: classi coinvolte, dati necessari, impatto sull'architettura a moduli.
+Describe how you would implement it technically: classes involved, data required, impact on the module architecture.

@@ -1,24 +1,24 @@
-# Contribuire a Dedalo
+# Contributing to Dedalo
 
-Grazie per l'interesse in **Dedalo**! Questo documento stabilisce le regole del flusso di lavoro per collaboratori interni ed esterni, così da mantenere il progetto ordinato e ridurre il carico dei manutentori.
+Thank you for your interest in **Dedalo**! This document establishes the workflow rules for both internal and external contributors, keeping the project organized and reducing the maintainers' workload.
 
-## Codice di Condotta
+## Code of Conduct
 
-Contribuisci con rispetto reciproco: nessuna discriminazione, linguaggio offensivo o comportamento tossico. Le discussioni tecniche sono benvenute, i giudizi personali no. Tratta ogni contributo — codice, art, design — come il lavoro di una persona che vuole migliorare il progetto, esattamente come te.
+Contribute with mutual respect: no discrimination, offensive language, or toxic behavior. Technical disagreements are welcome; personal judgments are not. Treat every contribution — code, art, design — as the work of someone who wants to improve the project, just like you.
 
-## Flusso di lavoro Git
+## Git Workflow
 
 ### Branching
 
-I branch non devono avere nomi casuali. Usa sempre il formato:
+Branch names must never be random. Always use the following format:
 
 ```
-tipo/modulo-descrizione
+type/module-description
 ```
 
-Dove `tipo` è uno dei tag elencati sotto e `modulo` è `core` oppure il nome della città in minuscolo.
+Where `type` is one of the tags listed below and `module` is either `core` or the city name in lowercase.
 
-Esempi validi:
+Valid examples:
 
 - `feat/venezia-acqua-alta`
 - `fix/core-pathfinding`
@@ -26,47 +26,47 @@ Esempi validi:
 - `docs/readme-update`
 - `chore/gitignore-update`
 
-### Messaggi di Commit (Conventional Commits)
+### Commit Messages (Conventional Commits)
 
-Ogni messaggio di commit deve iniziare con uno dei seguenti tag:
+Every commit message must start with one of the following tags:
 
-| Tag        | Uso                                                      |
-|------------|----------------------------------------------------------|
-| `feat:`    | Nuove funzionalità (es. `feat: add tide system to Venezia`) |
-| `fix:`     | Bug risolti (es. `fix: correct A* heuristic in Core`)     |
-| `chore:`   | Aggiornamenti di routine (es. `chore: update .gitignore`) |
-| `refactor:`| Ottimizzazioni del codice senza cambi di comportamento    |
-| `docs:`    | Documentazione                                            |
-| `test:`    | Aggiunta o modifica di test                               |
-| `perf:`    | Miglioramenti delle prestazioni                           |
+| Tag        | Usage                                                          |
+|------------|----------------------------------------------------------------|
+| `feat:`    | New features (e.g. `feat: add tide system to Venezia`)         |
+| `fix:`     | Bug fixes (e.g. `fix: correct A* heuristic in Core`)           |
+| `chore:`   | Routine updates (e.g. `chore: update .gitignore`)              |
+| `refactor:`| Code improvements without behavior changes                     |
+| `docs:`    | Documentation                                                  |
+| `test:`    | Adding or updating tests                                       |
+| `perf:`    | Performance improvements                                       |
 
-Scrivi i messaggi in inglese, concisi e descrittivi.
+Write messages in English, keeping them concise and descriptive.
 
-### Pull Request
+### Pull Requests
 
-1. Crea un branch dal main con il formato corretto.
-2. Apri una PR compilando il template automatico.
-3. Collega la PR a un'issue (es. `Risolve #42`).
-4. Verifica tutte le caselle della checklist prima di richiedere la review.
+1. Create a branch from `main` following the naming format.
+2. Open a PR by filling in the automatic template.
+3. Link the PR to an issue (e.g. `Resolves #42`).
+4. Tick every box in the checklist before requesting a review.
 
-## Architettura del progetto
+## Project Architecture
 
-Il progetto Unity vive nella cartella `Unity_Files/`. Le regole fondamentali:
+The Unity project lives in the `Unity_Files/` folder. The core rules:
 
-- **Core**: tutto il codice base (motore, UI generale, IA, pathfinding) va in `Unity_Files/Assets/Scripts/Core` e sottocartelle. Il Core non deve dipendere da nessuna città.
-- **Città**: ogni modulo città è autonomo. Il codice esclusivo di una città va nel suo modulo (es. `Unity_Files/Assets/Città/Venezia/Scripts`), i dati mappa in `Data/` (JSON o ScriptableObjects) e le grafiche esclusive in `Art/`.
+- **Core**: all base code (engine, general UI, AI, pathfinding) goes in `Unity_Files/Assets/Scripts/Core` and its subfolders. The Core must never depend on any city.
+- **Cities**: each city module is self-contained. City-exclusive code goes in its own module (e.g. `Unity_Files/Assets/Città/Venezia/Scripts`), map data in `Data/` (JSON or ScriptableObjects), and exclusive visuals in `Art/`.
 
-Se una modifica richiede di toccare sia il Core sia una città, valuta prima con un manutentore se la parte generica vada estratta nel Core.
+If a change requires touching both the Core and a city, first discuss with a maintainer whether the generic part should be extracted into the Core.
 
-## Sicurezza
+## Security
 
-Non committare mai: chiavi API, token, file `.env`, keystore (`.keystore`, `.jks`), certificati (`.p12`, `.mobileprovision`) o dati personali. Usa `.env.example` come riferimento per le variabili necessarie. Il `.gitignore` è già configurato per proteggerti.
+Never commit: API keys, tokens, `.env` files, keystores (`.keystore`, `.jks`), certificates (`.p12`, `.mobileprovision`), or personal data. Use `.env.example` as a reference for the required variables. The `.gitignore` is already configured to protect you.
 
-## Primi passi
+## Getting Started
 
-1. Fai il fork del repository e clonalo.
-2. Apri Unity Hub, seleziona "Add project from disk" e scegli la cartella `Unity_Files/`.
-3. Crea un branch con il formato corretto.
-4. Lavora, committa con Conventional Commits e apri una Pull Request.
+1. Fork the repository and clone it.
+2. Open Unity Hub, select "Add project from disk" and choose the `Unity_Files/` folder.
+3. Create a branch following the naming format.
+4. Work, commit with Conventional Commits, and open a Pull Request.
 
-Grazie per contribuire a rendere i labirinti d'Italia più vivi!
+Thank you for helping bring the labyrinths of Italy to life!
