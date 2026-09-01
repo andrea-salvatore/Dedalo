@@ -1,0 +1,53 @@
+# ===== Unity generated folders =====
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Memory captures and recordings (can get huge)
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# Unity crash reports
+sysinfo.txt
+
+# ===== IDE (Visual Studio / JetBrains Rider) =====
+.vs/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.opendb
+*.VC.db
+
+# ===== C# / Unity artifacts =====
+*.pidb
+*.pidb.meta
+*.pdb
+*.pdb.meta
+*.mdb
+*.mdb.meta
+*.booproj
+*.svd
+
+# ===== Build outputs =====
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# ===== OS generated files =====
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
