@@ -5,7 +5,7 @@
 
 ## 🇮🇹 ITALIANO
 
-Come grande amante del classico gioco da tavolo *Scotland Yard*, ho sempre sognato di espanderne le potenzialità slegandolo dai limiti fisici del cartone. Questo progetto nasce proprio da quella scintilla, ma va molto oltre: non è un semplice clone, è un'evoluzione totale del genere della caccia all'uomo.
+Come grande amante dei classici giochi da tavolo investigativi basati sul "movimento nascosto" (hidden movement), ho sempre sognato di espanderne le potenzialità slegandoli dai limiti fisici del cartone. Questo progetto nasce proprio da quella scintilla...
 
 Il nome **Dedalo** non è scelto a caso. In italiano, questa parola è sinonimo di "labirinto inestricabile" (dal mito di Dedalo e il Minotauro). I centri storici delle città italiane — con i canali stretti di Venezia, i Sassi sovrapposti di Matera o i vicoli nascosti di Roma — sono dei veri e propri dedali. In questo progetto, questi antichi labirinti di pietra diventano la tua scacchiera.
 
@@ -25,7 +25,7 @@ Questo progetto è una vera e propria lettera d'amore alla nostra cultura. È pe
 
 ## 🇬🇧 ENGLISH
 
-As a huge fan of the classic board game *Scotland Yard*, I've always dreamed of pushing its boundaries and overcoming the limits of physical cardboard. This project was born from that exact spark, but it goes much further: it's not a simple clone, but a complete evolution of the hidden movement genre.
+As a huge fan of classic investigative and "hidden movement" board games, I've always dreamed of pushing their boundaries and overcoming the limits of physical cardboard. This project was born from that exact spark...
 
 The name **Dedalo** (the Italian word for *labyrinth* or *maze*, derived from the mythical architect Daedalus) is no coincidence. Italy's historical cities — from the narrow canals of Venice and the overlapping stone dwellings of Matera, to the hidden alleys of Rome — are literal labyrinths. In this project, these ancient stone mazes become your chessboard.
 
