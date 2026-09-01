@@ -1,6 +1,7 @@
 using Dedalo.Core.Network;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Dedalo.Core.UI
@@ -39,7 +40,12 @@ namespace Dedalo.Core.UI
                 Debug.LogWarning("Compila sia il campo Email sia il campo Password.");
                 return;
             }
-            await authNetworkManager.SignInWithUsernamePasswordAsync(emailInput.text, passwordInput.text);
+            bool success = await authNetworkManager.SignInWithUsernamePasswordAsync(emailInput.text, passwordInput.text);
+            if (success)
+            {
+                Debug.Log("Login riuscito: carico MainMenuScene.");
+                SceneManager.LoadScene("MainMenuScene");
+            }
         }
 
         public async void OnRegisterClicked()
@@ -55,7 +61,12 @@ namespace Dedalo.Core.UI
                 Debug.LogWarning("Compila sia il campo Email sia il campo Password.");
                 return;
             }
-            await authNetworkManager.SignUpWithUsernamePasswordAsync(emailInput.text, passwordInput.text);
+            bool success = await authNetworkManager.SignUpWithUsernamePasswordAsync(emailInput.text, passwordInput.text);
+            if (success)
+            {
+                Debug.Log("Registrazione riuscita: carico MainMenuScene.");
+                SceneManager.LoadScene("MainMenuScene");
+            }
         }
 
         public async void OnGuestClicked()
@@ -66,7 +77,12 @@ namespace Dedalo.Core.UI
                 Debug.LogError("AuthNetworkManager non collegato nell'Inspector!");
                 return;
             }
-            await authNetworkManager.SignInAnonymouslyAsync();
+            bool success = await authNetworkManager.SignInAnonymouslyAsync();
+            if (success)
+            {
+                Debug.Log("Accesso Ospite riuscito: carico MainMenuScene.");
+                SceneManager.LoadScene("MainMenuScene");
+            }
         }
     }
 }

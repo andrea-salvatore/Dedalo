@@ -7,7 +7,7 @@ namespace Dedalo.Core.Network
 {
     public class AuthNetworkManager : MonoBehaviour
     {
-        public async Task SignInAnonymouslyAsync()
+        public async Task<bool> SignInAnonymouslyAsync()
         {
             if (Unity.Services.Core.UnityServices.State == Unity.Services.Core.ServicesInitializationState.Uninitialized)
             {
@@ -17,30 +17,33 @@ namespace Dedalo.Core.Network
             if (Unity.Services.Core.UnityServices.State != Unity.Services.Core.ServicesInitializationState.Initialized)
             {
                 Debug.LogError("UGS non inizializzato: login anonimo annullato.");
-                return;
+                return false;
             }
 
             if (IsAlreadySignedIn())
             {
-                return;
+                return false;
             }
 
             try
             {
                 await AuthenticationService.Instance.SignInAnonymouslyAsync();
                 Debug.Log("Login anonimo riuscito. PlayerId: " + AuthenticationService.Instance.PlayerId);
+                return true;
             }
             catch (AuthenticationException e)
             {
                 Debug.LogError("Errore di autenticazione anonima: " + e.Message);
+                return false;
             }
             catch (RequestFailedException e)
             {
                 Debug.LogError("Errore di rete durante il login anonimo: " + e.Message);
+                return false;
             }
         }
 
-        public async Task SignUpWithUsernamePasswordAsync(string username, string password)
+        public async Task<bool> SignUpWithUsernamePasswordAsync(string username, string password)
         {
             if (Unity.Services.Core.UnityServices.State == Unity.Services.Core.ServicesInitializationState.Uninitialized)
             {
@@ -50,30 +53,33 @@ namespace Dedalo.Core.Network
             if (Unity.Services.Core.UnityServices.State != Unity.Services.Core.ServicesInitializationState.Initialized)
             {
                 Debug.LogError("UGS non inizializzato: registrazione annullata.");
-                return;
+                return false;
             }
 
             if (IsAlreadySignedIn())
             {
-                return;
+                return false;
             }
 
             try
             {
                 await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(username, password);
                 Debug.Log("Registrazione completata con successo! PlayerId: " + AuthenticationService.Instance.PlayerId);
+                return true;
             }
             catch (AuthenticationException e)
             {
                 Debug.LogError("Errore di registrazione: " + TranslateAuthError(e));
+                return false;
             }
             catch (RequestFailedException e)
             {
                 Debug.LogError("Errore di registrazione: " + TranslateRequestError(e));
+                return false;
             }
         }
 
-        public async Task SignInWithUsernamePasswordAsync(string username, string password)
+        public async Task<bool> SignInWithUsernamePasswordAsync(string username, string password)
         {
             if (Unity.Services.Core.UnityServices.State == Unity.Services.Core.ServicesInitializationState.Uninitialized)
             {
@@ -83,27 +89,42 @@ namespace Dedalo.Core.Network
             if (Unity.Services.Core.UnityServices.State != Unity.Services.Core.ServicesInitializationState.Initialized)
             {
                 Debug.LogError("UGS non inizializzato: login annullato.");
-                return;
+                return false;
             }
 
             if (IsAlreadySignedIn())
             {
-                return;
+                return false;
             }
 
             try
             {
                 await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(username, password);
                 Debug.Log("Login riuscito! Bentornato " + AuthenticationService.Instance.PlayerName + " (PlayerId: " + AuthenticationService.Instance.PlayerId + ")");
+                return true;
             }
             catch (AuthenticationException e)
             {
                 Debug.LogError("Errore di login: " + TranslateAuthError(e));
+                return false;
             }
             catch (RequestFailedException e)
             {
                 Debug.LogError("Errore di login: " + TranslateRequestError(e));
+                return false;
             }
+        }
+
+        public void SignOut()
+        {
+            if (!AuthenticationService.Instance.IsSignedIn)
+            {
+                Debug.Log("Non sei loggato: logout non necessario.");
+                return;
+            }
+
+            AuthenticationService.Instance.SignOut();
+            Debug.Log("Logout effettuato");
         }
 
         private bool IsAlreadySignedIn()
