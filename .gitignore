@@ -51,3 +51,20 @@ sysinfo.txt
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# ===== MASSIVE PROJECT CACHE (Addressables) =====
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+ServerData/
+
+# ===== SECURITY & AUTHENTICATION (CRITICAL) =====
+# Ignore Keystores for Android/iOS publishing
+*.keystore
+*.jks
+*.p12
+*.mobileprovision
+
+# Ignore local environment variables and secret configurations
+.env
+secrets.json
+credentials.json
+*AuthKey_*.p8
